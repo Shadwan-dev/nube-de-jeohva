@@ -1,18 +1,16 @@
-// src/components/Layout/Layout.jsx
-import React from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
-function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50">
-      <Header />
-      <main className="pt-20"> {/* Ajuste para header fijo */}
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
         {children}
       </main>
       <Footer />
     </div>
   );
-}
+};
 
 export default Layout;

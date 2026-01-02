@@ -1,0 +1,156 @@
+@import 'tailwindcss';
+
+/* Definir tema personalizado */
+@theme {
+  /* Colores modo claro */
+  --color-celestial-50: #f0f9ff;
+  --color-celestial-100: #e0f2fe;
+  --color-celestial-200: #bae6fd;
+  --color-celestial-300: #7dd3fc;
+  --color-celestial-400: #38bdf8;
+  --color-celestial-500: #0ea5e9;
+  --color-celestial-600: #0284c7;
+  --color-celestial-700: #0369a1;
+  --color-celestial-800: #075985;
+  --color-celestial-900: #0c4a6e;
+  
+  /* Colores modo oscuro */
+  --color-dark-bg: #0f172a;
+  --color-dark-surface: #1e293b;
+  --color-dark-text: #f1f5f9;
+  --color-dark-muted: #94a3b8;
+  
+  /* Fuentes */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-script: 'Great Vibes', cursive;
+  
+  /* Animaciones */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-theme-transition: themeTransition 0.3s ease;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes themeTransition {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+  }
+}
+
+/* Estilos globales y modo oscuro */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  
+  .dark {
+    color-scheme: dark;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-gray-800 font-sans transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-dark-bg text-dark-text;
+  }
+}
+
+/* Utilidades para modo oscuro */
+@layer utilities {
+  /* Textos */
+  .dark .text-gray-800 {
+    @apply text-dark-text;
+  }
+  
+  .dark .text-gray-700 {
+    @apply text-dark-muted;
+  }
+  
+  .dark .text-gray-600 {
+    @apply text-dark-muted/80;
+  }
+  
+  /* Fondos */
+  .dark .bg-white {
+    @apply bg-dark-surface;
+  }
+  
+  .dark .bg-gray-50 {
+    @apply bg-dark-bg/50;
+  }
+  
+  /* Bordes */
+  .dark .border-gray-200 {
+    @apply border-gray-800;
+  }
+  
+  .dark .border-celestial-100 {
+    @apply border-celestial-800;
+  }
+  
+  .dark .border-celestial-200 {
+    @apply border-celestial-700;
+  }
+  
+  /* Gradientes y sombras */
+  .dark .from-white {
+    @apply from-dark-surface;
+  }
+  
+  .dark .to-white {
+    @apply to-dark-surface;
+  }
+  
+  .dark .bg-celestial-50 {
+    @apply bg-celestial-900/30;
+  }
+  
+  .dark .shadow-lg {
+    @apply shadow-xl shadow-black/30;
+  }
+  
+  .dark .shadow-xl {
+    @apply shadow-2xl shadow-black/40;
+  }
+}
+
+/* Componentes personalizados */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-celestial-500 to-celestial-600 
+      text-white rounded-full font-medium hover:shadow-lg 
+      hover:shadow-celestial-300/50 transition-all duration-300 
+      hover:from-celestial-600 hover:to-celestial-700
+      dark:from-celestial-600 dark:to-celestial-700
+      dark:hover:from-celestial-700 dark:hover:to-celestial-800;
+  }
+  
+  .section-padding {
+    @apply px-6 py-16 md:px-12 lg:px-24;
+  }
+  
+  /* Transición suave para cambios de tema */
+  .theme-transition {
+    @apply transition-all duration-300;
+  }
+}
